@@ -118,10 +118,26 @@ since it is impossible to flip the two-headed coin adn get tails, the current pr
 without loss of generality,Suppose that the jailer told Prisoner A that Priosner B would be set free.
 Then by Baye's formula,we have:
 \[
-
-P(A dies|told B)
+\begin{aligned}
+P(A dies\mid told B)
+&=\frac{P(told B|A dies)P(A dies)}{P(told B|A dies)P(A dies)+P(told B|B dies)P(B dies)+P(told B|C dies)P(C dies)}&
+\end{aligned}
+\]
+if A is to die,he could be told either B is to be freed or C is to be freed,each with probability 1/2.
+Thus $P(told B|A dies)=1/2$.if B is to die,A would not be told B is to be freed,Thus $P(told B|B dies)=0$.if C is to die,A must be told B is to be freed.
+Thus $P(told B|C dies)=1$.so we have
+\[
+\begin{aligned}
+P(A dies\mid told B)
+&=\frac{P(told B|A dies)P(A dies)}{P(told B|A dies)P(A dies)+P(told B|B dies)P(B dies)+P(told B|C dies)P(C dies)}& \\
+&=\frac{1/2.1/3}{1/2.1/3+0+1.1/3}& \\
+&=\frac{1}{3}&\\
+\end{aligned}
 \]
 }
+So the jailer is wrong.Divulging this information will not change the probability that A will be executed.
+\\
+\\
 \textbf{Pro. 3} Suppose we know that the number of items produced in a factory during a week is a random variable with mean $500$. What can be said about the probability that this week's production will be least 1000?
 \\
 \textbf{Solution}
