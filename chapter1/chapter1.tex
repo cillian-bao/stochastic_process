@@ -55,7 +55,6 @@
 \def\str{\sum_{i=1}^m\sum_{j=1}^m\sum_{l=1}^mh_ih_jh_l^+}
 \def\st{\sum_{i=1}^m\sum_{l=1}^mh_i^2h_l^+}
 \def\sij{\sum_{i=1}^{m-1}\sum_{j=i+1}^m\sum_{l=1}^mh_ih_jh_l^+}
-
 %\makeatletter
 %\def\EquationsBySection{\def\theequation{\thesection.\arabic{equation}}%
 % \@addtoreset{equation}{section}}
@@ -70,7 +69,6 @@
 \newtheorem{assumption}{Assumption}%[section]
 \newtheorem{notation}{Notation}%[section]
 %\makeatother \EquationsBySection
-
 \begin{document}
 \title{\LARGE The Homework of Chapter 1}
 \author{ }
@@ -134,18 +132,60 @@ P(A dies\mid told B)
 &=\frac{1}{3}&\\
 \end{aligned}
 \]
-}
 So the jailer is wrong.Divulging this information will not change the probability that A will be executed.
+}
 \\
 \\
 \textbf{Pro. 3} Suppose we know that the number of items produced in a factory during a week is a random variable with mean $500$. What can be said about the probability that this week's production will be least 1000?
 \\
 \textbf{Solution}
+\textcolor[rgb]{1,0,0}
+{
+From the Markov inequality
+\[P\{X \geq a\} \leq \frac{E[x]}{a} \]
+thus to say:
+\[P\{X \geq 1000\} \leq \frac{500}{1000}=0.5\]
+}
 \\
-
 \textbf{Pro. 4} There are $n$ types of coupons. Each newly obtained coupon is, independently, type $i$ with probability $p_i, i=1,\ldots,n$. Find the expected number and the variance of the number of distinct types obtained in a collection of $k$ coupons.
 \\
 \textbf{Solution}
+\\
+\textcolor[rgb]{1,0,0}
+{
+Let $X_i$ be a random Variable which is 1 if the type $i$ in the collection of k coupons and be 0 if it is not in.\\
+The random variable $N=\sum_{i=1}^{n}X_i$\\
+which can be described as:\\
+\[
+X_i=\left\{
+\begin{aligned}
+&1, {\rm type}\,i\,{\rm is\,in\,the\,collection}&\\
+&0, {\rm otherwise}&\\
+\end{aligned}
+\right.    
+\]
+Now 
+\[P(x_i=0)=P({\rm type}\,i\,{\rm is\,not\,in\,the\,collection})=(1-p_i)^k\]
+\[E(N)=\sum_{i=1}^{n}E{X_i}=\sum_{i=1}^{n}(1-(1-p_i)^k)\]
+for $i \neq j$:\\
+\[
+\begin{aligned}
+1-P(X_i=1,X_j=1)&=P({X_i=0}\cup{X_j=0})&\\
+&=P(X_i=0)+P(X_j=0)-P(X_i,X_j=0)&\\
+&=(1-p_i)^k+(1-p_j)^k-(1-p_i-p_j)^k&\\
+\end{aligned}
+\]
+so the variance of $N$ is:
+\[Var(N)=Var(\sum_{i=1}^{n}X_i)=\sum_{i=1}^{n}Var(X_i)+2\sum_{i=1}^{n}\sum_{j<i}Cov(X_i,X_j)\]
+hence:$E(X_i)=E(X^2_i)=1-(1-p_i)^k,E(X_iX_j)=(1-p_i)^k+(1-p_j)^k-(1-p_i-p_j)^k$\\
+we already know:$Var(X_i)=E(X^{2}_i)-E^{2}(X_i)=(1-p_i)^k(1-(1-p_i)^k),Cov(X_i,X_j)=E(X_iX_j)-E(X_i)E(X_j)$
+so,we have:
+\[
+\operatorname{Var}(N)=
+\sum_{i=1}^{n}\left(1-p_{i}\right)^{k}\left(1-\left(1-p_{i}\right)^{k}\right)+
+2 \sum_{1 \leq i, j \leq n}\left[\left(1-p_{i}-p_{j}\right)^{k}-\left(1-p_{i}\right)^{k}-\left(1-p_{j}\right)^{k}\right]    
+\]
+}
 \\
 
 \textbf{Pro. 5} Let $X_1, X_2, \ldots$ be a sequence of independent identically distributed continuous random variables. We say that a record accurs at time $n$ if $X_n>max(X_1,\ldots,X_{n-1})$. That is, $X_n$ is a record if it is larger than each of $X_1,\ldots,X_{n-1}$. Show\\
@@ -155,14 +195,15 @@ So the jailer is wrong.Divulging this information will not change the probabilit
 (iv) Let $N$=min\{$n:n>1$ and a record occurs at time $n$\}. Show $E[N]=\infty$.
 \\
 \textbf{Solution}
+\textcolor[rgb]{1,0,0}
+{
+    
+}
 \\
-
 \textbf{Pro. 6} Consider a experiment which results in one of three possible outcome $i$ occurring with probability $p_i,i=1,2,3,\sum^3_{i=1}{p_i}=1$. Suppose that $n$ independent replications of this experiment are performed and let $X_i,i=1,2,3$, denote the number of times outcome $i$ appears. Determine the conditional expectation of $X_1$ given that $X_2=m$.
 \\
 \textbf{Solution}
 \\
-
-
 \textbf{Pro. 7} The joint density of $X$ and $Y$ is given by
 \begin{eqnarray*}%
 f(x,y)=
@@ -175,20 +216,16 @@ What is $E[e^{X/2}|Y=1]$?
 \\
 \textbf{Solution}
 \\
-
 \textbf{Pro. 8} A miner is trapped in a mine containing three doors. The first door leads to a tunnel that takes him to safety after two hours of travel. The second door leads to a tunnel that returns him to the mine after three hours of travel. The third door leads to a tunnel that returns him to his mine after five hours. Assuming that the miner is at all times equally likely to choose any one of the doors, what is the expected length time until the miner reaches safty?
 \\
 \textbf{Solution}
 \\
-
 \textbf{Pro. 9} An automobile insurance company classifies each of its policyholder as being of the types $i=1,\ldots,k$. It supposes that the numbers of accidents that a type $i$ policyholder has in successive years are independent Poisson random variables with mean $\lambda_i,i=1,\ldots,k$. The probability that a newly insured policyholder is type $i$ is $p_i,\sum^k_{i=1}{p_i}=1$. Given that a policyholder had $n$ accidents in her first year, what is the expected number that she has in her second year? What is the conditional probability that she has $m$ accidents in her second year?\\
 \textbf{Solution}
 \\
-
 \textbf{Pro. 10} Show that\\
 \quad\quad(a)$E[XY|Y=y]=yE[X|Y=y]$\\
 \quad\quad(b)$ E[g(X,Y)|Y=y]=E[g(X,y)|Y=y]$\\
 \quad\quad(c)$ E[XY]=E[YE[X|Y]]$\\
 \textbf{Proof}
 \end{document}
-
