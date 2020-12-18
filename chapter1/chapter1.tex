@@ -237,10 +237,37 @@ $$
 \textbf{Pro. 6} Consider a experiment which results in one of three possible outcome $i$ occurring with probability $p_i,i=1,2,3,\sum^3_{i=1}{p_i}=1$. Suppose that $n$ independent replications of this experiment are performed and let $X_i,i=1,2,3$, denote the number of times outcome $i$ appears. Determine the conditional expectation of $X_1$ given that $X_2=m$.\\
 \\
 \textbf{Solution}
-\textecolor[rgb]{1,0,0}
+\\
+\textcolor[rgb]{1,0,0}
 {
 For $k \leq n-m$:
-\[P\{X_1=k|X_2=m\}=\]
+\[P\{X_1=k|X_2=m\}=\frac{P(X_1=k,X_2=m)}{P(X_2=m)}\]
+Now if $X_{1}=k$ and $X_{2}=m,$ then it follows that $X_{3}=n-k-m$ However,
+$$
+\begin{array}{c}
+P\left\{X_{1}=k, X_{2}=m, X_{3}=n-k-m\right\} \\
+=\frac{n !}{k ! m !(n-k-m) !} p_{1}^{k} p_{2}^{m} p_{3}^{(n-k-m)}
+\end{array}
+$$
+This follows since any particular sequence of the $n$ experiments having outcome 1 appearing $k$ times, outcome $2 \mathrm{~m}$ times, and outcome $3(n-$ $k-m$ ) times has probability $p_{1}^{k} p_{2}^{m} p_{3}^{(n-k-m)}$ of occurring. since there are $n ! /[k ! m !(n-k-m) !]$ such sequences, Equation (3.2) follows. Therefore, we have
+$$
+P\left\{X_{1}=k \mid X_{2}=m\right\}=\frac{\frac{n !}{k ! m !(n-k-m) !} p_{1}^{k} p_{2}^{m} p_{3}^{(n-k-m)}}{\frac{n !}{m !(n-m) !} p_{2}^{m}\left(1-p_{2}\right)^{n-m}}
+$$
+where we have used the fact that $X_{2}$ has a binomial distribution with parameters $n$ and $p_{2} .$ Hence,
+$$
+P\left\{X_{1}=k \mid X_{2}=m\right\}=\frac{(n-m) !}{k !(n-m-k) !}\left(\frac{p_{1}}{1-p_{2}}\right)^{k}\left(\frac{p_{3}}{1-p_{2}}\right)^{n-m-k}
+$$
+or equivalently, writing $p_{3}=1-p_{1}-p_{2}$
+$$
+P\left\{X_{1}=k \mid X_{2}=m\right\}=\left(\begin{array}{c}
+n-m \\
+k
+\end{array}\right)\left(\frac{p_{1}}{1-p_{2}}\right)^{k}\left(1-\frac{p_{1}}{1-p_{2}}\right)^{n-m-k}
+$$
+In other words, the conditional distribution of $X_{1},$ given that $X_{2}=m,$ is binomial with parameters $n-m$ and $p_{1} /\left(1-p_{2}\right)$. Consequently,
+$$
+E\left[X_{1} \mid X_{2}=m\right]=(n-m) \frac{p_{1}}{1-p_{2}}
+$$
 }
 \textbf{Pro. 7} The joint density of $X$ and $Y$ is given by
 \begin{eqnarray*}%
@@ -287,4 +314,36 @@ so,we can calculate that:$E[X]=10$
 \quad\quad(b)$ E[g(X,Y)|Y=y]=E[g(X,y)|Y=y]$\\
 \quad\quad(c)$ E[XY]=E[YE[X|Y]]$\\
 \textbf{Proof}
+\textcolor[rgb]{1,0,0}
+{
+We will prove it when $X$ and $Y$ are discrete.\\
+(a) This part follows from (b) by taking\\
+$$
+\begin{array}{c}
+g(x, y)=x y \\
+$$
+\\
+(b)
+$$
+E[g(X, Y) \mid Y=\bar{y}]=\sum_{y} \sum_{x} g(x, y) \\
+P\{X=x, Y=y \mid Y=\bar{y}\}
+\end{array}
+$$
+Now,
+$$
+P\{X=x, Y=y \mid Y=\bar{y}\}
+$$
+$-\left\{\begin{array}{ll}0, & \text { if } y \neq \bar{y} \\ P\{X=x, Y=\bar{y}\}, & \text { if } y=\bar{y}\end{array}\right.$
+\[
+\begin{aligned}
+&\text { So, }\\
+&\begin{aligned}
+E[g(X, Y) \mid Y=\bar{y}]=& \sum_{k} g(x, \bar{y}) P\{X=x \mid Y=\bar{y}\} \\
+&=E[g(x, \bar{y}) \mid Y=\bar{y}\\
+\text { (c) } E[X Y]=E[E[X Y \mid Y]] \\
+=& E[Y E[X \mid Y]] \quad \text { by }(\mathrm{a})
+\end{aligned}
+\end{aligned}
+\]
+}
 \end{document}
